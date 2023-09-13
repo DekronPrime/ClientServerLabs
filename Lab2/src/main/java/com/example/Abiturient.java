@@ -76,9 +76,4 @@ public class Abiturient {
                 ",\n averagePoint: " + averagePoint +
                 "}\n";
     }
-
-    public static void main(String[] args) {
-        Abiturient abiturient = new Abiturient();
-        System.out.println(abiturient);
-    }
 }

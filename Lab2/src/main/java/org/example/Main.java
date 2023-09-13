@@ -33,7 +33,7 @@ public class Main {
     public static void printAbiturientsWithHigherAveragePoint(Abiturient[] abiturients, double averagePoint) {
         System.out.println("Abiturients list with higher average point than " + averagePoint + ":\n");
         int howMuch = 0;
-        for (int i = 0; i < abiturients.length - 1; i++) {
+        for (int i = 0; i < abiturients.length; i++) {
             if (abiturients[i].getAveragePoint() > averagePoint) {
                 System.out.println(abiturients[i]);
                 howMuch++;
@@ -44,33 +44,36 @@ public class Main {
     }
 
     public static void printNTopAbiturients(Abiturient[] abiturients, int n) {
-        sortArrayByAveragePointDesc(abiturients);
+        Abiturient[] sortedAbiturientsArray = sortArrayByAveragePointDesc(abiturients);
+        for (int i = 0; i < sortedAbiturientsArray.length; i++) {
+            System.out.println(sortedAbiturientsArray[i]);
+        }
         System.out.println("Top " + n + " Abiturients list with higher average point:\n");
         for (int i = 0; i < n; i++) {
-            System.out.println(abiturients[i]);
+            System.out.println(sortedAbiturientsArray[i]);
         }
-        if (abiturients == null)
-            System.out.println("Abiturients list is empty");
     }
 
-    private static void sortArrayByAveragePointDesc(Abiturient[] abiturients) {
-        for (int i = 0; i < abiturients.length - 1; i++) {
-            for (int j = i + 1; j < abiturients.length; j++) {
-                if (abiturients[i].getAveragePoint() < abiturients[j].getAveragePoint()) {
-                    Abiturient temp = abiturients[i];
-                    abiturients[i] = abiturients[j];
-                    abiturients[j] = temp;
+    private static Abiturient[] sortArrayByAveragePointDesc(Abiturient[] abiturients) {
+        Abiturient[] sortedAbiturientsArray = abiturients.clone();
+        for (int i = 0; i < sortedAbiturientsArray.length - 1; i++) {
+            for (int j = i + 1; j < sortedAbiturientsArray.length; j++) {
+                if (sortedAbiturientsArray[i].getAveragePoint() < sortedAbiturientsArray[j].getAveragePoint()) {
+                    Abiturient temp = sortedAbiturientsArray[i];
+                    sortedAbiturientsArray[i] = sortedAbiturientsArray[j];
+                    sortedAbiturientsArray[j] = temp;
                 }
             }
         }
+        return  sortedAbiturientsArray;
     }
 
     public static void main(String[] args) {
         Abiturient[] abiturients = createAndInitializeAbiturientsArray();
+        Scanner scanner = new Scanner(System.in);
         int answer;
         do {
-            answer = Menu.showMenu();
-            Scanner scanner = new Scanner(System.in);
+            answer = Menu.showMenuAndChooseOption();
             switch (answer) {
                 case 1 -> {
                     System.out.println("\tPrint abiturients with given name");
@@ -86,12 +89,15 @@ public class Main {
                 }
                 case 3 -> {
                     System.out.println("\tPrint top N abiturients");
-                    int n;
-                    do {
-                        System.out.print("Enter N: ");
-                        n = scanner.nextInt();
-                    } while (n > abiturients.length || n < 0);
-                    printNTopAbiturients(abiturients, n);
+                    System.out.print("Enter number of top abiturients (0 > n < 6): ");
+                    try {
+                        int n = scanner.nextInt();
+                        if (n < 0 || n > 5)
+                            throw new Exception("Number n is out of range (0 > n < 6)");
+                        printNTopAbiturients(abiturients, n);
+                    } catch (Exception e) {
+                        System.out.println();
+                    }
                 }
                 case 4 -> System.out.println("\tBye");
                 default -> System.out.println("Wrong option! Try again.");

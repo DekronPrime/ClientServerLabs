@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 public class Menu {
-    public static int showMenu() {
+    public static int showMenuAndChooseOption() {
         System.out.println("---------------------------------------------------------");
         System.out.println("\t\tChoose operation from list below:");
         System.out.println("1 - Print abiturients with given name");
