@@ -2,6 +2,7 @@ package org.example;
 
 import com.example.Abiturient;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -22,7 +23,7 @@ public class Main {
         System.out.println("Abiturients list with name " + name + ":\n");
         int howMuch = 0;
         for (int i = 0; i < abiturients.length - 1; i++) {
-            if (abiturients[i].getFirstName().equals(name)) {
+            if (abiturients[i].getFirstName().equalsIgnoreCase(name)) {
                 System.out.println(abiturients[i]);
                 howMuch++;
             }
@@ -71,6 +72,7 @@ public class Main {
     public static void main(String[] args) {
         Abiturient[] abiturients = createAndInitializeAbiturientsArray();
         Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(Locale.US);
         int answer;
         do {
             answer = Menu.showMenuAndChooseOption();
@@ -90,14 +92,11 @@ public class Main {
                 case 3 -> {
                     System.out.println("\tPrint top N abiturients");
                     System.out.print("Enter number of top abiturients (0 > n < 6): ");
-                    try {
-                        int n = scanner.nextInt();
-                        if (n < 0 || n > 5)
-                            throw new Exception("Number n is out of range (0 > n < 6)");
+                    int n = scanner.nextInt();
+                    if (n < 0 || n > 5)
+                        System.out.println("Number n is out of range (0 > n < 6)");
+                    else
                         printNTopAbiturients(abiturients, n);
-                    } catch (Exception e) {
-                        System.out.println();
-                    }
                 }
                 case 4 -> System.out.println("\tBye");
                 default -> System.out.println("Wrong option! Try again.");
