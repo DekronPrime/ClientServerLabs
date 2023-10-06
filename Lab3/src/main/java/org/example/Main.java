@@ -13,17 +13,13 @@ public class Main {
         int wordLength = scanner.nextInt();
 
         Task task = new Task(enteredText, replacementString, wordLength);
-        StringBuilder result = task.changeSpecialWordsToReplacementString();
+        String result = task.changeSpecialWordsToReplacementString();
         System.out.println(result + "\n");
 
         scanner.nextLine();
+
         System.out.print("Enter a password for validating: ");
         String password = scanner.nextLine();
-        try {
-            if (Task.checkPassword(password))
-                System.out.println("Your password is valid");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        System.out.println(task.printPasswordValidity(password));
     }
 }
