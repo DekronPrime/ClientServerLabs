@@ -1,7 +1,7 @@
 package org.example;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyArrayProcessor implements ArrayProcessor{
 
@@ -15,7 +15,7 @@ public class MyArrayProcessor implements ArrayProcessor{
 
     @Override
     public double calculate(double[][] array) {
-        ArrayList<Double> positiveElements = new ArrayList<>();
+        List<Double> positiveElements = new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
             for (int j = i; j < array.length; j++) {
                 double currentValue = array[i][j];

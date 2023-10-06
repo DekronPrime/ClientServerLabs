@@ -44,9 +44,8 @@ public class MyDoubleArrayReader implements DoubleArrayReader {
             int arrayLength = in.nextInt();
             double[][] array = new double[arrayLength][arrayLength];
             for (int i = 0; i < arrayLength; i++)
-                for (int j = 0; j < arrayLength; j++) {
+                for (int j = 0; j < arrayLength; j++)
                     array[i][j] = in.nextDouble();
-                }
             return array;
         } catch (IOException e) {
             System.err.println("Error reading file");
@@ -61,9 +60,8 @@ public class MyDoubleArrayReader implements DoubleArrayReader {
             int arrayLength = in.nextInt();
             double[][] array = new double[arrayLength][arrayLength];
             for (int i = 0; i < arrayLength; i++)
-                for (int j = 0; j < arrayLength; j++) {
+                for (int j = 0; j < arrayLength; j++)
                     array[i][j] = in.nextDouble();
-                }
             return array;
         } catch (IOException e) {
             System.err.println("Error reading file");

@@ -1,7 +1,6 @@
 package org.example;
 
 import java.io.File;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,8 +8,6 @@ public class Main {
 
         File file1 = new File("lab41.txt");
         File file2 = new File("lab42.txt");
-//        double[] array = reader.readOneDimensionalArray("lab41.txt");
-//        double[][] array2 = reader.readTwoDimensionalArray("lab42.txt");
         double[] array = reader.readOneDimensionalArray(file1);
         double[][] array2 = reader.readTwoDimensionalArray(file2);
 
