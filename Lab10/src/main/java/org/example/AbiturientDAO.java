@@ -35,7 +35,7 @@ public class AbiturientDAO {
         }
     }
 
-    List<Abiturient> filterAbiturientsByGivenFirstname(String firstname) {
+    List<Abiturient> filterAbiturientsByGivenFirstName(String firstname) {
         try (EntityManager entityManager = getEntityManager()){
             Query query = entityManager.createQuery("from Abiturient where firstName = :firstname", Abiturient.class);
             query.setParameter("firstname", firstname);

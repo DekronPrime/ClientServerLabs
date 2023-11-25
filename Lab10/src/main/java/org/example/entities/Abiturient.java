@@ -1,8 +1,7 @@
 package org.example.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -12,40 +11,36 @@ import java.util.Scanner;
 @Table(name = "abiturients")
 @Setter
 @Getter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Abiturient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ID;
-    @Column(name = "lastname")
+    private Long ID;
+    @Column(name = "last_name")
+    @NonNull
     private String lastName;
-    @Column(name = "firstname")
+    @Column(name = "first_name")
+    @NonNull
     private String firstName;
-    @Column(name = "fathername")
+    @Column(name = "father_name")
+    @NonNull
     private String fatherName;
     @Column(name = "email")
+    @NonNull
     private String email;
     @Column(name = "phone")
+    @NonNull
     private String phone;
     @Column(name = "average_point")
+    @NonNull
     private double averagePoint;
     @Column(name = "address")
+    @NonNull
     private String address;
     @Column(name = "need_hostel")
+    @NonNull
     private boolean needHostel;
-
-    public Abiturient() {
-    }
-
-    public Abiturient(String lastName, String firstName, String fatherName, String email, String phone, double averagePoint, String address, boolean needHostel) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.fatherName = fatherName;
-        this.email = email;
-        this.phone = phone;
-        this.averagePoint = averagePoint;
-        this.address = address;
-        this.needHostel = needHostel;
-    }
 
     public static Abiturient initializeAbiturient() throws InputMismatchException {
         try {
@@ -70,10 +65,11 @@ public class Abiturient {
             System.out.println("Do abiturient needs a hostel? (by default: no)\n1 - Yes\n0 - No");
             System.out.print("Answer: ");
             int answer = scanner.nextInt();
-            if (answer == 1)
+            if (answer == 1) {
                 abiturient.setNeedHostel(true);
-            else
+            } else {
                 abiturient.setNeedHostel(false);
+            }
             return abiturient;
         } catch (InputMismatchException e) {
             throw new InputMismatchException("Entered data is invalid");

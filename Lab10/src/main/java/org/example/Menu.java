@@ -3,6 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class Menu {
+    private static Scanner scanner = new Scanner(System.in);
     public static int showMenuAndChooseAction() {
         System.out.println("---------------------------------------------------------");
         System.out.println("\t\tChoose action from list below:");
@@ -19,7 +20,6 @@ public class Menu {
         System.out.println("0 - Exit");
         System.out.println("---------------------------------------------------------");
         System.out.print("Enter your answer: ");
-        Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 }
